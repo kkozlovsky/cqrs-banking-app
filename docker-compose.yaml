@@ -1,0 +1,39 @@
+version: '3.0'
+
+networks:
+  banking:
+    driver: bridge
+
+volumes:
+  cqrs-db-data:
+    driver: local
+
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    networks:
+      - banking
+    depends_on:
+      - postgres
+
+  postgres:
+    image: 'postgres:15.1-alpine'
+    container_name: postgres
+    ports:
+      - "5437:5432"
+    env_file:
+      - .env
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+    networks:
+      - banking
+    volumes:
+      - cqrs-db-data:/var/lib/postgresql/data
+
