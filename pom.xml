@@ -20,6 +20,7 @@
         <liquibase.version>4.25.1</liquibase.version>
         <postgresql.version>42.6.0</postgresql.version>
         <lombok.version>1.18.30</lombok.version>
+        <preliquibase.version>1.5.0</preliquibase.version>
         <liquibase.version>4.25.1</liquibase.version>
         <checkstyle.version>3.2.2</checkstyle.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
@@ -60,6 +61,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.lbruun.springboot</groupId>
+            <artifactId>preliquibase-spring-boot-autoconfigure</artifactId>
+            <version>${preliquibase.version}</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
