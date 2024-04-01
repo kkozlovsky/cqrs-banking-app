@@ -11,6 +11,9 @@ spring:
     enabled: true
     default-schema: ${POSTGRES_SCHEMA}
   jpa:
+    properties:
+      hibernate:
+        default_schema: ${POSTGRES_SCHEMA}
     hibernate:
       ddl-auto: none
 
