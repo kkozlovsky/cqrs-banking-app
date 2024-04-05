@@ -18,15 +18,15 @@
 
     <properties>
         <java.version>17</java.version>
-        <liquibase.version>4.25.1</liquibase.version>
-        <postgresql.version>42.6.0</postgresql.version>
-        <lombok.version>1.18.30</lombok.version>
+        <liquibase.version>4.27.0</liquibase.version>
+        <postgresql.version>42.7.3</postgresql.version>
+        <lombok.version>1.18.32</lombok.version>
         <preliquibase.version>1.5.0</preliquibase.version>
-        <liquibase.version>4.25.1</liquibase.version>
-        <checkstyle.version>3.2.2</checkstyle.version>
+        <liquibase.version>4.26.0</liquibase.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jwt.version>0.2.0</jwt.version>
         <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -97,7 +97,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <forceJavacCompilerUse>false</forceJavacCompilerUse>
                     <fork>false</fork>
@@ -134,30 +134,6 @@
                         </exclude>
                     </excludes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.version}</version>
-                <configuration>
-                    <configLocation>sun_checks.xml</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <suppressionsFileExpression>suppressions.xml</suppressionsFileExpression>
-                            <suppressionsLocation>suppressions.xml</suppressionsLocation>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

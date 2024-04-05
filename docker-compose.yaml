@@ -16,7 +16,8 @@ volumes:
 
 services:
   backend:
-    build: ./core-service
+    build:
+      dockerfile: core.Dockerfile
     ports:
       - "8080:8080"
     env_file:
@@ -26,9 +27,21 @@ services:
     depends_on:
       - postgres
 
+  event-handler:
+    build:
+      dockerfile: event-handler.Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - .env
+    networks:
+      - banking
+    depends_on:
+      - kafka
+      - postgres
+
   postgres:
     image: 'postgres:15.1-alpine'
-    container_name: postgres
     ports:
       - "5437:5432"
     env_file:
@@ -66,6 +79,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=${KAFKA_ADVERTISED_LISTENERS}
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=${KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=${KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR}
+      - KAFKA_INTER_BROKER_LISTENER_NAME=LOCAL
     networks:
       - banking
     volumes:
