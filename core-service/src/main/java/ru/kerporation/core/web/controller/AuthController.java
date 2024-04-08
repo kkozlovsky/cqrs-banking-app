@@ -1,5 +1,6 @@
 package ru.kerporation.core.web.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import ru.kerporation.core.web.dto.mapper.ClientMapper;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Validated
 public class AuthController {
 
     private final AuthService authService;
@@ -29,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponseDto login(@RequestBody @Validated final LoginRequestDto dto) {
+    public LoginResponseDto login(@RequestBody @Valid final LoginRequestDto dto) {
         return authService.login(dto);
     }
 

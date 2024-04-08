@@ -19,17 +19,15 @@ public class TransactionDto {
     private UUID id;
 
     @NotNull(message = "Sender card must be not null.", groups = OnCreate.class)
-    @Null(message = "Sender card must be null.")
     @Valid
     private CardDto from;
 
     @NotNull(message = "Receiver card must be not null.", groups = OnCreate.class)
-    @Null(message = "Receiver card must be null.")
     @Valid
     private CardDto to;
 
-    @NotNull(message = "Amount must be not null.")
-    @Positive(message = "Amount must be positive.")
+    @NotNull(message = "Amount must be not null.", groups = OnCreate.class)
+    @Positive(message = "Amount must be positive.", groups = OnCreate.class)
     private BigDecimal amount;
 
 }

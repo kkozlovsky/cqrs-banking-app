@@ -2,6 +2,7 @@ package ru.kerporation.core.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kerporation.common.domain.model.Card;
 import ru.kerporation.core.service.card.CardService;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/cards")
 @RequiredArgsConstructor
+@Validated
 public class CardController {
 
     private final CardService cardService;
